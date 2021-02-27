@@ -7,6 +7,7 @@ const app = Vue.createApp({
                     src: "./Images/รองช้ำ.jpg",
                     isFav: false,
                     isPhotoitem: true,
+                    isCurrentPhoto: false
                 },
                 {
 
@@ -14,6 +15,7 @@ const app = Vue.createApp({
                     src: "./Images/เกิดมาเพื่ออกหัก.jpg",
                     isFav: false,
                     isPhotoitem: true,
+                    isCurrentPhoto: false
                 },
                 {
 
@@ -21,17 +23,19 @@ const app = Vue.createApp({
                     src: "./Images/คลั่งรัก.jpg",
                     isFav: false,
                     isPhotoitem: true,
+                    isCurrentPhoto: false
                 }
             ],
+            photo_zoom: false
         }
     },
     methods: {
         toggleFav(index) {
             this.gallery[index].isFav = !this.gallery[index].isFav
         },
-        searchPhotoItems() {
+        searchPhotoItems(textinput) {
             for (let i = 0; i < this.gallery.length; i++) {
-                if ((this.gallery[i].picture_name.toLowerCase().includes(search.textinput.toLowerCase())) == false) {
+                if (!(this.gallery[i].picture_name.toLowerCase().includes(textinput.toLowerCase()))) {
                     this.gallery[i].isPhotoitem = false
                 } else {
                     this.gallery[i].isPhotoitem = true
@@ -39,13 +43,18 @@ const app = Vue.createApp({
             }
         },
         toggleZoom(index) {
-            index;
-            console.log("zoommm")
+            this.photo_zoom = true
+            this.gallery[index].isCurrentPhoto = true
         },
-        // toggleCloseZoom(index) {
-        //     this.gallery[index].zoom = true
-        // },
-
+        toggleCloseZoom(index) {
+            this.photo_zoom = false
+            this.gallery[index].isCurrentPhoto = false
+        },
+        toggleReset(){
+            for (let i = 0; i < this.gallery.length; i++) {
+                this.gallery[i].isPhotoitem = true
+            }
+        }
     },
     computed: {
         countUndone() {

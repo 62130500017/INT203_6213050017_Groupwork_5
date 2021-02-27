@@ -44,14 +44,14 @@
   <div id="app">
     <nav class="flex flex-wrap items-center p-5 bg-black h-20">
       <img class="w-8" v-bind:src="logo" alt="Music_logo"/>
-      <Photo-search @toggle-search="toggleSearch" @toggle-cancel="toggleCancel"></Photo-search>
+      <Photo-search @toggle-cancel="toggleReset" @toggle-search="toggleSearch" @toggle-cancel="toggleCancel" @search-photo-items="searchPhotoItems"></Photo-search>
       <p class="text-white font-semibold text-xl pl-32 absolute right-5">Music Gallery ({{countUndone}})</p> 
     </nav>
-    <Photo-item :gallery="gallery" @toggle-fav="toggleFav" @search-photo-items="searchPhotoItems"></Photo-item>
+    <Photo-item :gallery="gallery" @toggle-fav="toggleFav" @toggle-zoom="toggleZoom"></Photo-item>
     <div class="text-white text-xl font-bold p-5" v-if="filterNoFound == gallery.length">
       No Music  :(
     </div>
-    <photo-view :gallery="gallery" @zoom-bg="Zoom" @toggle-zoom="toggleZoom" toggle-close-zoom="toggleCloseZoom"></photo-view>
+    <Photo-view :gallery="gallery" :photozoom="photo_zoom" @toggle-close-zoom="toggleCloseZoom"></Photo-view>
   </div>
 
     <!-- my main.js -->

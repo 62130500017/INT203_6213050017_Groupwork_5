@@ -3,9 +3,6 @@ app.component('photo-item', {
         gallery:{
             type: Array,
             require: true
-        },
-        photo_zoom:{
-            type: Boolean
         }
     },
     template:
@@ -33,19 +30,8 @@ app.component('photo-item', {
             this.$emit('toggle-fav',index)
         },
         toggleZoom(index) {
-            this.$emit('zoom-bg')
             this.$emit('toggle-zoom',index)
         },
-
-        // searchInput() {
-        //     for (let i = 0; i < this.gallery.length; i++) {
-        //         if ((this.gallery[i].picture_name.toLowerCase().includes(this.search.textinput.toLowerCase())) == false) {
-        //             this.gallery[i].eachpic = false
-        //         }else {
-        //             this.gallery[i].eachpic = true
-        //         }
-        //     }
-        // },
     }
     
 })
